@@ -8,10 +8,13 @@ async function insertCredential(credentialdata: CredentialData) {
 }
 
 async function findCredentialByUserId(userId:number) {
-    console.log("userId type ", typeof userId, " userid ", userId)
    return await client.credentials.findMany({where:{userId:userId}})
 }
 
+async function findOneByCredentialId(credentialId:number) {
+    return await client.credentials.findFirst({where:{id:credentialId}})
+}
+
 export {
-    insertCredential, findCredentialByUserId
+    insertCredential, findCredentialByUserId, findOneByCredentialId
 }

@@ -38,4 +38,24 @@ async function findCredentialByUserId(userId:number, title:string){
     }
 }
 
-export{createCredential}
+async function getAllCredentials(userId:number) {
+    
+        const credentials = await credentialRepository.findCredentialByUserId(userId)
+        if (credentials.length===0){
+            throw{type:"forbidden", message:"not credential for this userid"}
+        }
+        return credentials
+    
+}
+
+async function getCredentialById(credentialId) {
+
+    const credential = await credentialRepository.findOneByCredentialId(credentialId)
+    if(!credential){
+        throw{type:"forbidden", message:"not credential for this id"}
+    }
+    return credential
+    
+}
+
+export{createCredential, getAllCredentials, getCredentialById}
