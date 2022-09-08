@@ -13,6 +13,12 @@ async function insertUser(userdata:UserData) {
     client.users.create({data:userdata})
 }
 
+// async function findUserByEmail(email:string) {
+//     console.log("no repository")
+//     const user = await client.users.findMany({ where: { email: email } });
+//     return user
+// }
+
 export {
     findUserByEmail, insertUser
 }

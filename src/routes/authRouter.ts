@@ -5,6 +5,6 @@ import authValidator from "../middlewares/authMiddleware.js";
 const authRouter = Router()
 
 authRouter.post("/signup", authValidator, signup)
-authRouter.post("/signin",authValidator, signin )
+authRouter.post("/signin", signin )
 
 export default authRouter
