@@ -10,7 +10,8 @@ async function findUserByEmail(email:string) {
 }
 
 async function insertUser(userdata:UserData) {
-    client.users.create({data:userdata})
+    console.log("inderi o usuario")
+    await client.users.create({data:userdata,})
 }
 
 // async function findUserByEmail(email:string) {
