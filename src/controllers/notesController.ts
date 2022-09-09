@@ -23,7 +23,7 @@ export async function searchNotes(req:Request, res:Response) {
 }
 
 export async function deleteNotes(req:Request, res:Response) {
-    const noteId = +req.query.id  // é uma string
+    const noteId = +req.params.id  // é uma string
     const userId = res.locals.user // é um numero
     if(!noteId){
         throw{type:"forbidden", message:"invalid note id"}

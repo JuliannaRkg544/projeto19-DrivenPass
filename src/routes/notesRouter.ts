@@ -10,6 +10,6 @@ notesRouter.use(tokenValidator)
 
 notesRouter.post("/notes-creation",schemaValidator(noteSchema), createNotes)
 notesRouter.get("/notes-search", searchNotes)
-notesRouter.delete("/notes-deletation", deleteNotes)
+notesRouter.delete("/notes-deletation/:id", deleteNotes)
 
 export default notesRouter
