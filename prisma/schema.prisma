@@ -15,7 +15,8 @@ model users {
   email      String        @unique
   password   String
   credential credentials[]
-  noes       notes[]
+  notes      notes[]
+  wifi       wifi[]
 }
 
 model credentials {
@@ -38,4 +39,13 @@ model notes {
   description String
 
   @@unique([userId, title])
+}
+
+model wifi {
+  id       Int    @id @default(autoincrement())
+  userId   Int
+  title    String
+  lable     String
+  password String
+  users    users  @relation(fields: [userId], references: [id])
 }
