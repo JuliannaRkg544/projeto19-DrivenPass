@@ -6,9 +6,11 @@ import credentialSchema from "../schemas/credentialSchema.js";
 
 const credentialRouter = Router()
 
-credentialRouter.post("/credential-create", schemaValidator(credentialSchema) ,tokenValidator ,createCredential)
-credentialRouter.get("/credential-search", tokenValidator ,getCredentials )
-credentialRouter.delete("/credential-deletation/:id", tokenValidator, deleteCredential)
+credentialRouter.use(tokenValidator)
+
+credentialRouter.post("/credential-create", schemaValidator(credentialSchema) ,createCredential)
+credentialRouter.get("/credential-search" ,getCredentials )  //falta descriptogarafar a senha
+credentialRouter.delete("/credential-deletation/:id", deleteCredential)
 
 
 export default credentialRouter
