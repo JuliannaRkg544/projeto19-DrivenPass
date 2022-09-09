@@ -19,10 +19,20 @@ async function createNote(title:string, description:string, userId:any) {
 
 
 async function searchAllNotes(userId:any) {
+    const notes = await noteRepository.searchAllNotes(userId)
+    if (notes.length===0){
+        throw{type:"forbidden", message:"not note for this userid"}
+    }
+    return notes
     
 }
 
 async function searchNoteById(noteId:number) {
+    const note = await noteRepository.searchNoteById(noteId)
+    if(!note){
+        throw{type:"forbidden", message:"not note for this id"}
+    }
+    return note
     
 }
 
