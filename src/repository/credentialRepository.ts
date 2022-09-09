@@ -14,7 +14,10 @@ async function findCredentialByUserId(userId:number) {
 async function findOneByCredentialId(credentialId:number) {
     return await client.credentials.findFirst({where:{id:credentialId}})
 }
+async function deleteCredential(credentialId:number) {
+    await client.credentials.deleteMany({where:{id:credentialId}})
+}
 
 export {
-    insertCredential, findCredentialByUserId, findOneByCredentialId
+    insertCredential, findCredentialByUserId, findOneByCredentialId, deleteCredential
 }

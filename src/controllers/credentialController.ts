@@ -26,3 +26,14 @@ export async function getCredentials(req: Request, res: Response) {
   const credentials = await credentialService.getCredentialById(credentialId) 
   res.status(200).send(credentials)
 }
+
+export async function deleteCredential(req: Request, res: Response) {
+  const credentialId = +req.params.id;
+  const userId = res.locals.user;
+  if(!credentialId){
+    throw{type:"forbidden", message:"invalid credential id"}
+  }
+  await credentialService.deleteCredential(userId, credentialId);
+
+  res.sendStatus(200);
+}

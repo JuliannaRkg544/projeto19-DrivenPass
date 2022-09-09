@@ -58,4 +58,15 @@ async function getCredentialById(credentialId) {
     
 }
 
-export{createCredential, getAllCredentials, getCredentialById}
+async function deleteCredential(userId:any, credentialId:any) {
+    const credential = await getCredentialById(credentialId)
+    if(!credential){
+        throw{type:"forbidden", message:"does not exist"}
+    }
+    if(Number(credential.userId)!==Number(userId)){
+        throw{type:"forbidden", message:" is not your id"}
+    }
+    await credentialRepository.deleteCredential(credentialId)
+}
+
+export{createCredential, getAllCredentials, getCredentialById, deleteCredential}
