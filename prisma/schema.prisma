@@ -17,6 +17,7 @@ model users {
   credential credentials[]
   notes      notes[]
   wifi       wifi[]
+  cards      cards[]
 }
 
 model credentials {
@@ -48,4 +49,24 @@ model wifi {
   lable     String
   password String
   users    users  @relation(fields: [userId], references: [id])
+}
+model cards {
+  id             Int      @id @default(autoincrement())
+  userId         Int
+  title          String
+  number         String
+  name           String
+  securityCode   String
+  expirationDate String
+  password       String
+  isVirtual      Boolean  @default(false)
+  type           cardtype
+  users          users    @relation(fields: [userId], references: [id])
+  @@unique([userId, title])
+}
+
+enum cardtype {
+  credit
+  debit
+  credit_debit  @map("credit-debit")
 }
