@@ -6,7 +6,7 @@ export async function createCard(req: Request, res: Response) {
   const {
     title,
     number,
-    name,
+    name, 
     securityCode,
     expirationDate,
     password,
@@ -38,23 +38,21 @@ export async function createCard(req: Request, res: Response) {
 }
 
 export async function searchCard(req: Request, res: Response) {
-  const cardId = +req.query.id; // é uma string
-  const userId = res.locals.user; // é um numero
+  const cardId = +req.query.id; 
+  const userId = res.locals.user; 
   if (!cardId) {
-    //se n tiver cardId quero buscar todas as notas
     const card = await cardServices.searchAllCard(userId);
     return res.status(200).send(card);
   }
-  //se tiver cardId quero buscar apenas uma nota específica
   const card = await cardServices.searchCardById(cardId);
   res.status(200).send(card);
 }
 
 export async function deleteCard(req: Request, res: Response) {
-  const cardId = +req.params.id; // é uma string
-  const userId = res.locals.user; // é um numero
+  const cardId = +req.params.id; 
+  const userId = res.locals.user; 
   if (!cardId) {
-    throw { type: "forbidden", message: "invalid note id" };
+    throw { type: "unauthorized", message: "invalid note id"};
   }
   await cardServices.deleteCard(userId, cardId);
   res.sendStatus(200);

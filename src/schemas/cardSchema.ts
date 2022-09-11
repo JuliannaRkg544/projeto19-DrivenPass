@@ -1,18 +1,18 @@
-
-
+import { CardData } from "../repository/cardRepository.js";
 import Joi from "joi";
 
-export const cardSchema = Joi.object({
+const cvvRegex = /^[0-9]{3}/
+const cardnumberRegex = /^(0[1-9]|1[0-2])\/?([0-9]{2})/
+
+export const cardSchema = Joi.object<CardData>({
   title: Joi.string().required(),
   number: Joi.string().length(16).required(),
   name: Joi.string().required(),
-  securityCode: Joi
-    .string()
-    .pattern(/^[0-9]{3}/)
+  securityCode: Joi.string()
+    .pattern(cvvRegex)
     .required(),
-  expirationDate: Joi
-    .string()
-    .pattern(/^(0[1-9]|1[0-2])\/?([0-9]{2})/)
+  expirationDate: Joi.string()
+    .pattern(cardnumberRegex)
     .required(),
   password: Joi.string().required(),
   isVirtual: Joi.boolean().required(),

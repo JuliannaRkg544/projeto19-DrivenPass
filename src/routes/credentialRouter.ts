@@ -9,7 +9,7 @@ const credentialRouter = Router()
 credentialRouter.use(tokenValidator)
 
 credentialRouter.post("/credential-create", schemaValidator(credentialSchema) ,createCredential)
-credentialRouter.get("/credential-search" ,getCredentials )  //falta descriptogarafar a senha
+credentialRouter.get("/credential-search" ,getCredentials )  
 credentialRouter.delete("/credential-deletation/:id", deleteCredential)
 
 

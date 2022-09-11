@@ -42,29 +42,42 @@ async function getAllCredentials(userId:number) {
     
         const credentials = await credentialRepository.findCredentialByUserId(userId)
         if (credentials.length===0){
-            throw{type:"forbidden", message:"not credential for this userid"}
+            throw{type:"unauthorized", message:"not credential for this userid"}
         }
-        return credentials
+        const credentialWithPassword = uncryptPassword(credentials)
+        return credentialWithPassword
     
 }
 
-async function getCredentialById(credentialId) {
+
+async function getCredentialById(credentialId:number) {
 
     const credential = await credentialRepository.findOneByCredentialId(credentialId)
     if(!credential){
-        throw{type:"forbidden", message:"not credential for this id"}
+        throw{type:"unautorized", message:"not credential for this id"}
     }
+
+    credential.password = cryptr.decrypt(credential.password)
     return credential
     
 }
 
-async function deleteCredential(userId:any, credentialId:any) {
+function uncryptPassword(credentials:any){
+    
+    credentials.forEach((cred) => {
+        const decryptedPassword = cryptr.decrypt(cred.password);
+        cred.password = decryptedPassword;
+      });
+      return credentials
+}
+
+async function deleteCredential(userId:number, credentialId:number) {
     const credential = await getCredentialById(credentialId)
     if(!credential){
-        throw{type:"forbidden", message:"does not exist"}
+        throw{type:"unauthorized", message:"existent credential"}
     }
     if(Number(credential.userId)!==Number(userId)){
-        throw{type:"forbidden", message:" is not your id"}
+        throw{type:"unauthorized", message:" invalid operation"}
     }
     await credentialRepository.deleteCredential(credentialId)
 }

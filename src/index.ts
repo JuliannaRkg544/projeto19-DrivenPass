@@ -13,6 +13,6 @@ const server = express();
 server.use(json());
 server.use(cors());
 server.use(router);
-server.use(errorHandler)
+server.use(errorHandler);
 
 server.listen(port, ()=>{console.log(`server running on port: ${port}`)});

@@ -8,8 +8,8 @@ const cryptr = new Cryptr("myTotallySecretKey");
 async function createCard(
     title: string,
     number: string,
-    name: string,
-    userId:any,
+    name: string, 
+    userId:number,
     securityCode: string,
     expirationDate: string,
     password: string,
@@ -43,7 +43,6 @@ async function findCardByUserId(userId: number, title: string) {
   const userCredentials = await cardRepository.findCardByUserId(
     userId
   );
-  console.log("credential by user ", userCredentials);
   if (userCredentials.length > 0) {
     let credentialTittle = userCredentials.map((credential) => {
       return credential.title;
@@ -58,28 +57,28 @@ async function findCardByUserId(userId: number, title: string) {
 async function searchAllCard(userId: number) {
   const card = await cardRepository.findCardByUserId(userId);
   if (card.length === 0) {
-    throw { type: "forbidden", message: "not credential for this userid" };
+    throw { type: "unauthorized", message: "not credential for this userid" };
   }
   return card;
 }
 
-async function searchCardById(cardId:any) {
+async function searchCardById(cardId:number) {
   const card = await cardRepository.findCardById(
     cardId
   );
   if (!card) {
-    throw { type: "forbidden", message: "not card for this id" };
+    throw { type: "unauthorized", message: "not card for this id" };
   }
   return card;
 }
 
-async function deleteCard(userId: any, cardId: any) {
+async function deleteCard(userId: number, cardId: number) {
   const card = await cardRepository.findCardById(cardId);
   if (!card) {
-    throw { type: "forbidden", message: "does not exist" };
+    throw { type: "unauthorized", message: "does not exist" };
   }
   if (Number(card.userId) !== Number(userId)) {
-    throw { type: "forbidden", message: " is not your id" };
+    throw { type: "unauthorized", message: " is not your id" };
   }
   await cardRepository.deleteCard(cardId);
 }
