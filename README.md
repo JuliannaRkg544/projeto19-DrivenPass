@@ -4,6 +4,8 @@
 
 • POST /signup
     - Rota para cadastrar um novo usuário
+    
+    
     - headers: {}
     - body: {
         "email": "email@email.com",
@@ -12,6 +14,8 @@
 
 • POST /signin
     - Rota para fazer login
+    
+    
     - headers: {}
     - body: {
         "email": "email@email.com",
@@ -23,6 +27,8 @@
 
 • POST /card-creation
     - Rota para registrar um novo cartão
+    
+    
     - headers: { "Authorization": `Bearer ${token}` }
     - body: {
         "title": "título",
@@ -37,11 +43,15 @@
 
 • GET /card-search?id=$
     - Rota para buscar cartão do usuário (todos ou um)
+    
+    
     - headers: { "Authorization": `Bearer ${token}` }
     - body: {}
 
 • DELETE /card-deletation
     - Rota para deletar um cartão
+    
+    
     - headers: { "Authorization": `Bearer ${token}` }
     - body: {}
 
@@ -50,6 +60,8 @@
 
 • POST /credential-create
     - Rota para registrar nova credencial
+    
+    
     - headers: { "Authorization": `Bearer ${token}` }
     - body: {
         "title": "título",
@@ -60,11 +72,15 @@
 
 • GET /credential-search?id=$
     - Rota para buscar credenciais do usuário (todas ou uma)
+    
+    
     - headers: { "Authorization": `Bearer ${token}` }
     - body: {}
 
 • DELETE /credential-deletation/:id
     - Rota para deletar uma credencial
+    
+    
     - headers: { "Authorization": `Bearer ${token}` }
     - body: {}
 
@@ -73,6 +89,8 @@
 
 • POST /notes-creation
     - Rota para registrar nova nota
+    
+    
     - headers: { "Authorization": `Bearer ${token}` }
     - body: {
         "title": "título",
@@ -81,11 +99,15 @@
 
 • GET /notes-search?id=$
     - Rota para buscar notas do usuário (todas ou uma)
+    
+    
     - headers: { "Authorization": `Bearer ${token}` }
     - body: {}
 
 • DELETE /notes/deletation/:id
     - Rota para deletar uma nota
+    
+    
     - headers: { "Authorization": `Bearer ${token}` }
     - body: {}
 
@@ -94,6 +116,8 @@
 
 • POST /wifi-creation
     - Rota para registrar novo wifi
+    
+    
     - headers: { "Authorization": `Bearer ${token}` }
     - body: {
         "title": "título",
@@ -103,10 +127,14 @@
 
 • GET /wifi-serach?id=$
     - Rota para buscar wifis do usuário (todos ou um)
+    
+    
     - headers: { "Authorization": `Bearer ${token}` }
     - body: {}
 
 • DELETE /wifi-deletation/:id
     - Rota para deletar um wifi
+    
+    
     - headers: { "Authorization": `Bearer ${token}` }
     - body: {}
